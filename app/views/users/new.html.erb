@@ -2,8 +2,8 @@
   <h1>Create a new user</h1>
   <div class="form_group">
     <%= form_for @user do |f| %>
-      <%= f.text_field :name %>
-      <%= f.text_field :email %>
+      <%= f.label :name %> <%= f.text_field :name %>
+      <%= f.label :email %> <%= f.text_field :email %>
       <%= f.submit %>
     <% end %>
   </div>
