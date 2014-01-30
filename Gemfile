@@ -8,12 +8,11 @@ gem 'pg'
 
 gem 'devise'
 
-group :development do
   gem "rails-erd", github: 'bshelton229/rails-erd', branch: 'mavericks'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails_layout'
-end
+  gem 'rails_12factor'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
