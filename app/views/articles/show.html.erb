@@ -2,4 +2,5 @@
 <div class="article">
   <%= @article.title %>
   <%= @article.body %>
+  <%= link_to "Add comment", new_user_article_comment_path(@article.user_id, @article.id) %>
 </div>

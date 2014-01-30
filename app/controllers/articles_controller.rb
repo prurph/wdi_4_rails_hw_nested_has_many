@@ -26,9 +26,17 @@ class ArticlesController < ApplicationController
       flash[:notice] = "Article created!"
       redirect_to @user
     else
-      flash[:error] = @user.errors.full_messages.join(', ')
+      flash.now[:error] = @user.errors.full_messages.join(', ')
       render :new
     end
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+    @user = User.find(params[:user_id])
+  end
+
+  def update
   end
 
   private
