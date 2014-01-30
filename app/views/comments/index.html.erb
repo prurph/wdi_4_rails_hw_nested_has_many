@@ -1,0 +1,8 @@
+<h1>All comments for an article</h1>
+<div class="comments">
+  <%= @comments.each do |comment| %>
+    <div class="comment">
+      <%= comment.body %>
+    </div>
+  <% end %>
+  <%= link_to "New comment" new_user_article_comment_path(@article.user_id, @article.id)

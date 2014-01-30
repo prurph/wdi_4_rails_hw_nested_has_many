@@ -1,0 +1,16 @@
+<h1>One User</h1>
+<div class="user">
+  <%= @user.name %>
+  <%= @user.email %>
+</div>
+<div class="articles">
+  <% @user.articles.each do |article| %>
+    <div class="article">
+      <%= link_to article.title, user_article_path(@user.id, article.id) %>
+      <%= article.body.truncate(35) %>
+    </div>
+  <% end %>
+</div>
+<div class="new_article">
+  <%= link_to "Write new article!", new_user_article_path(@user.id) %>
+</div>
