@@ -2,15 +2,19 @@ class ArticlesController < ApplicationController
   # before_action :get_user, only: :show
 
   def index
-    if params[:user_id]
-      @articles = User.find(:user_id).articles
-    else
-      @articles = Article.all.order(:user_id)
-    end
+    # if params[:user_id]
+    #   @articles = User.find(params[:user_id]).articles.order(:updated_at)
+    # else
+      @articles = Article.all.order(:updated_at)
+      # Need this to list user (author) of each article rather than actually doing
+      # The find inside the view
+      @users = User.all
+    # end
   end
 
   def show
     @article = Article.find(params[:id])
+    @user = User.find(params[:user_id])
   end
 
   def new
@@ -37,6 +41,15 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article = Article.find(params[:id])
+    @article.assign_attributes(article_params)
+    if @article.save
+      flash[:notice] = "Article created!"
+      redirect_to action: :show
+    else
+      flash.now[:error] = @user.errors.full_messages.join(', ')
+      render :new
+    end
   end
 
   private

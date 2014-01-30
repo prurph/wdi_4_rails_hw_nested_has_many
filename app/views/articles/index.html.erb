@@ -1,6 +1,15 @@
 <h1>All Articles</h1>
 <% @articles.each do |article| %>
+  <% author = @users.find(article.user_id) %> <%# Use this below to list author %>
   <div class="article">
     <%= link_to article.title, user_article_path(article.user_id, article.id) %>
+    <div class="article_text">
+      <%= article.body.truncate(100) %>
+    </div>
+    <div class="article_details">
+      <ul>
+        <li>by <%= link_to author.name, user_path(author.id) %></li>
+        <li><%= article.comments.count %> Comments</li>
+      </ul>
   </div>
 <% end %>

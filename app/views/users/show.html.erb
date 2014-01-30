@@ -1,13 +1,15 @@
-<h1>One User</h1>
 <div class="user">
-  <%= @user.name %>
-  <%= @user.email %>
+  <h1>Articles by <%= @user.name %></h1>
+  <h2><%= @user.email %></h2>
 </div>
 <div class="articles">
   <% @user.articles.each do |article| %>
+    <%= link_to article.title, user_article_path(@user.id, article.id) %>
     <div class="article">
-      <%= link_to article.title, user_article_path(@user.id, article.id) %>
-      <%= article.body.truncate(35) %>
+      <%= article.body.truncate(75) %>
+    </div>
+    <div class="article_comments">
+      <%= article.comments.count %> Comments
     </div>
   <% end %>
 </div>

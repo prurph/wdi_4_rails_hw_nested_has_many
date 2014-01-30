@@ -1,6 +1,18 @@
-<h1>Single Article</h1>
 <div class="article">
-  <%= @article.title %>
-  <%= @article.body %>
-  <%= link_to "Add comment", new_user_article_comment_path(@article.user_id, @article.id) %>
+  <h1><%= @article.title %> by <%= link_to @user.name, @user %></h1>
+  <div class="article_body">
+    <%= @article.body %>
+  </div>
+  <div class="article_comments">
+    <h2><%= @article.comments.count %> comments </h2>
+    <ul>
+      <% @article.comments.each do |comment| %>
+          <li><%= comment.body %></li>
+      <% end %>
+    </ul>
+    <div class="comment_links">
+      <%= link_to "Edit article", edit_user_article_path(@article.user_id, @article.id) %>
+      <%= link_to "Add comment", new_user_article_comment_path(@article.user_id, @article.id) %>
+    </div>
+  </div>
 </div>

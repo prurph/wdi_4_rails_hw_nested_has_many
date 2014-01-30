@@ -1,3 +1,10 @@
-<h1>Edit <%= @article.name %><h1>
-<%= form_for [@user, @article] do |f| %>
-  <%= f.
+<div class="new">
+  <h1>Edit <%= @article.title %><h1>
+  <div class="form_group">
+    <%= form_for [@user, @article] do |f| %>
+      <%= f.text_field :title %>
+      <%= f.text_area :body %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>

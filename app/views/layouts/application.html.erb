@@ -6,9 +6,32 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+  <header>
+    <nav class="main_nav">
+      <ul>
+        <li><%= link_to "All Users", users_path %></li>
+        <li><%= link_to "All Articles", root_path %></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="main_container">
+    <div class="flash error">
+      <% if flash[:error].present? %>
+        <%= flash.now[:error] %>
+      <% end %>
+    </div>
+    <div class="flash notice">
+      <% if flash[:notice].present? %>
+        <%= flash.now[:notice] %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+
+  </div>
 
 </body>
 </html>

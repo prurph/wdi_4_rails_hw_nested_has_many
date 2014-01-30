@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @article.comments << @comment
     if @article.save
       flash[:notice] = "Comment added!"
-      redirect_to action: :index
+      redirect_to user_article_path(@article.user_id, @article.id)
     else
       flash.now[:error] = @comment.errors.full_messages.join(', ')
       render :new
