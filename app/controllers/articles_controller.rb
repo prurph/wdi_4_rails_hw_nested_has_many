@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
         @articles = User.find(params[:user_id]).articles.order(updated_at: :desc)
       else
         @articles = Article.all.order(updated_at: :desc)
-
       end
   end
 

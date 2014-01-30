@@ -2,7 +2,6 @@
 <h1>All Articles</h1>
 
   <% @articles.each do |article| %>
-    <% author = @users.find(article.user_id) %> <%# Use this below to list author %>
 
   <div class="article">
     <div class="article_header">
@@ -15,7 +14,7 @@
 
     <div class="article_details">
       <ul class="article_list">
-        <li>by <%= link_to author.name, user_path(author.id) %></li>
+        <li>by <%= link_to article.user.name, user_path(article.user_id) %></li>
         <li><%= article.comments.count %> Comments</li>
       </ul>
     </div>
