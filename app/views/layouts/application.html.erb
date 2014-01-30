@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>SharedBlog</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Shared Blog" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Shared Blog" %>">
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <span class="brand"><%= link_to "Hippen", root_path, :class => "navbar-brand" %></span>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "All Users", users_path %></li>
+          <li><%= link_to "All Articles", root_path %></li>
+        </ul>
+        <p class="navbar-text navbar-right">The sickest articles</p>
+      </nav>
+    </header>
+    <main class="main" role="main">
+      <div class="flash error">
+        <% if flash[:error].present? %>
+          <%= flash.now[:error] %>
+        <% end %>
+      </div>
+      <div class="flash notice">
+        <% if flash[:notice].present? %>
+          <%= flash.now[:notice] %>
+        <% end %>
+      </div>
 
-<body>
+     <%= yield %>
 
-  <header>
-    <nav class="main_nav">
-      <ul>
-        <li><%= link_to "All Users", users_path %></li>
-        <li><%= link_to "All Articles", root_path %></li>
-      </ul>
-    </nav>
-  </header>
-  <div class="main_container">
-    <div class="flash error">
-      <% if flash[:error].present? %>
-        <%= flash.now[:error] %>
-      <% end %>
-    </div>
-    <div class="flash notice">
-      <% if flash[:notice].present? %>
-        <%= flash.now[:notice] %>
-      <% end %>
-    </div>
-
-    <%= yield %>
-
-  </div>
-
-</body>
+    </main>
+  </body>
 </html>

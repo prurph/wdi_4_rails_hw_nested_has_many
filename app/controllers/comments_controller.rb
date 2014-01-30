@@ -14,14 +14,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.create!(comment_params)
-    @article = Article.find(params[:article_id])
-    @article.comments << @comment
-    if @article.save
+    comment = Comment.create!(comment_params)
+    article = Article.find(params[:article_id])
+    article.comments << comment
+    if article.save
       flash[:notice] = "Comment added!"
-      redirect_to user_article_path(@article.user_id, @article.id)
+      redirect_to user_article_path(article.user_id, article.id)
     else
-      flash.now[:error] = @comment.errors.full_messages.join(', ')
+      flash.now[:error] = comment.errors.full_messages.join(', ')
       render :new
     end
   end

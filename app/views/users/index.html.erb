@@ -1,7 +1,11 @@
-<h1>All Users</h1>
-<% @users.each do |user| %>
-  <div class="user">
-    <%= link_to user.name, user %>
-  </div>
-<% end %>
-<%= link_to "Create new user!", new_user_path %>
+<div class="users_wrapper">
+  <h1>All Users</h1>
+  <% @users.each do |user| %>
+    <div class="user">
+      <p><%= link_to user.name, user %>
+        <%= link_to "#{user.articles.count} Articles", user_articles_path(user.id) %>
+      </p>
+    </div>
+  <% end %>
+  <%= link_to "Create new user!", new_user_path %>
+</div>
