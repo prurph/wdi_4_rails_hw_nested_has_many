@@ -20,6 +20,10 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @user = User.find(params[:user_id])
+    if @user != current_user
+      flash[:error] = "#{current_user.name} can't write articles under #{@user.name}"
+      redirect_to :back
+    end
   end
 
   def create
@@ -38,6 +42,10 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     @user = User.find(params[:user_id])
+    if @user != current_user
+      flash[:error] = "You can only edit your own articles!"
+      redirect_to :back
+    end
   end
 
   def update
