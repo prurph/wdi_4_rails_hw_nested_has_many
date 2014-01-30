@@ -1,5 +1,6 @@
 SharedBlog::Application.routes.draw do
 
+  devise_for :users
   resources :users do
     resources :articles do
       resources :comments

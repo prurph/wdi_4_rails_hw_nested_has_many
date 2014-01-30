@@ -6,6 +6,8 @@ gem 'bootstrap-sass'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+gem 'devise'
+
 group :development do
   gem "rails-erd", github: 'bshelton229/rails-erd', branch: 'mavericks'
   gem 'better_errors'
